@@ -8,8 +8,9 @@ const Token = sequelize.define('Token', {
         primaryKey: true
     },
     user_id:{
-        type: DataTypes.INTEGER,
-        allowNull: false
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        foreignKey: true
     }
 }, {
     tableName: 'tokens',

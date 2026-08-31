@@ -18,7 +18,7 @@ const Post = sequelize.define('Post', {
         allowNull: false
     },
     user_id:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false
     }
 }, {

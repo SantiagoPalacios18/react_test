@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 
-const sequelize = new Sequelize('instagram' /* nombre DB */, 'root' /* nombre de mi usuario */, 'KNYDIOBYGU4TGMJX*ñ' /* password de mi usuaro */, {
+const sequelize = new Sequelize('bing_bang' /* nombre DB */, 'root' /* nombre de mi usuario */, '' /* password de mi usuaro */, {
     host: 'localhost',
     dialect: 'mysql',
     root: 3306,

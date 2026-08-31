@@ -1,8 +1,16 @@
 {
-  "name": "react_test",
+  "name": "y",
+  "version": "0.1",
   "private": true,
-  "version": "0.0.0",
+  "description": "Instagram clone for educational purposes",
+  "repository": {
+    "type": "git",
+    "url": "react_test"
+  },
+  "license": "ISC",
+  "author": "Cross",
   "type": "module",
+  "main": "vite.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,8 +18,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.20.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",
