@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
 import './styles/profile.css'
 
 function Profile() {

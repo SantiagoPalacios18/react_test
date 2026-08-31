@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import './styles/navbar.css'
+import './styles/navbar.css';
 
 function Navbar() {
   return (
     <>
-      <h1>Soy Navbar xd</h1>
+      <header>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/profile">Profile</a>
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+        </nav>
+      </header>
     </>
   )
 }
