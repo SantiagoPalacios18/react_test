@@ -6,6 +6,8 @@ const postRoutes = require('./routes/postRoutes.js'); // Se importan todas las r
 const likeRoutes = require('./routes/likeRoutes.js'); // Se importan todas las rutas de like
 const tokenRoutes = require('./routes/tokenRoutes.js'); // Se importan todas las rutas de token
 
+SECRET_KEY = "WDGASTERINDELTARUNEBUILDITALLFROMANEMPTYROOM";
+
 const server = express();
 server.use(express.json()); // Lenguaje utilizado para enviar y recibir la información
 

@@ -6,10 +6,12 @@ function Navbar() {
     <>
       <header>
         <nav>
-          <a href="/">Home</a>
-          <a href="/profile">Profile</a>
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+          </ul>
         </nav>
       </header>
     </>

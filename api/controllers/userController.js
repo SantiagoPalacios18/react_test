@@ -25,8 +25,8 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
     try {
         const { username, name, email, cont } = req.body;
-        if (!username || !name || !email || !cont) return res.status(400).json({ message: "username, name, email y cont son obligatorios" });
-
+        if (!username || !name || !email || !cont) return res.status(400).json({ message: "Debe completar todos los campos para acceder" });
+        
         const newUser = await User.create({ username, name, email, cont });
         res.status(201).json(newUser);
     } catch (error) {
