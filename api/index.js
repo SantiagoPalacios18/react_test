@@ -1,5 +1,6 @@
 const express = require("express"); // Framework para hacer servidores web y administrar peticiones
 const { sequelize } = require('./config/db.js'); // Importamos el sequelize, el cual ya fue importado dentro de config/db.js
+const cors = require("cors")
 require('./models/index.js'); // Se importan todas las estructuras de las tablas
 const userRoutes = require('./routes/userRoutes.js'); // Se importan todas las rutas de user
 const postRoutes = require('./routes/postRoutes.js'); // Se importan todas las rutas de post
@@ -9,8 +10,8 @@ const tokenRoutes = require('./routes/tokenRoutes.js'); // Se importan todas las
 SECRET_KEY = "WDGASTERINDELTARUNEBUILDITALLFROMANEMPTYROOM";
 
 const server = express();
+server.use(cors())
 server.use(express.json()); // Lenguaje utilizado para enviar y recibir la información
-
 server.get('/', (req, res) => {
     res.status(200).json({ message: "🔥🔥🔥 HOLAAAAA 🔥🔥🔥" });
 });
@@ -26,7 +27,7 @@ server.use('/tokens', tokenRoutes);
 server.listen(3000, async () => {
   try {
     await sequelize.authenticate(); // Prueba para verificar que haya conexión exitosa y ver si el motor de la BD está encendido
-    await sequelize.sync({ force: true }); // Verifica las estructuras de la BD, comparando lo ingresado en el JS con lo que está en la BD
+    await sequelize.sync(); // Verifica las estructuras de la BD, comparando lo ingresado en el JS con lo que está en la BD
     /* INTERACCIÓN CON LAS TABLAS:
         sync() : Crea tablas (SNE), no modifica ni borra
         sync(force: true): Recrea absolutamente toda la BD, creando, modificando o borrando tablas

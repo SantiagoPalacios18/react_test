@@ -1,31 +1,52 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 import './styles/register.css'
 
 
 function Register() {
-  const [email, setEmail] = useState()
-  const [user, setUser] = useState()
-  const [cont, setCont] = useState()
-  const [vercont, setVercont] = useState()
-  const [error, setError] = useState()
-  const [test, setTest] = useState(1)
+  const [email, setEmail] = useState('')
+  const [user, setUser] = useState('')
+  const [cont, setCont] = useState('')
+  const [vercont, setVercont] = useState('')
+  const [error, setError] = useState('')
+  const [test, setTest] = useState('test')
   
-  const handleSubmit = async() => {
-    setTest(test += 1)
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    if (!email || !user || !cont || !vercont){
+      setError("Campos incompletos")
+      return
+    }
+    try {
+      const {check} = await axios.get(`http://localhost:3000/users/check?username=${user}&email=${email}`)
+
+      if(check){
+        setTest(check.data)
+        setError("Usuario o Email ya en uso")
+        return
+      }
+    }catch(error){
+      if(error.response){
+        setError(err.response.data.message)
+      } else {
+        setError("El servidor no responde, intente nuevamente")
+      }
+    }
     if (cont != vercont){
       setError("Las contraseñas no coincides")
       return
     }
     try{
-      response = await axios.post('http://localhost:3000/users', {
-        user,
-        user,
-        email,
-        cont
+      const response = await axios.post('http://localhost:3000/users', {
+        username: user,
+        name: user,
+        email: email,
+        cont: cont
       })
-    }catch(err){
-      if(err.response){
-        setError(err.response)
+      console.log({response})
+    }catch(error){
+      if(error.response){
+        setError(error.response.data.message)
       } else {
         setError("El servidor no responde, intente nuevamente")
       }
@@ -35,6 +56,7 @@ function Register() {
     <>
       <h1>{test}</h1>
       <h1>Registrate</h1>
+      {error && <p className='error' style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
 
         <label htmlFor="user">Nombre de usuario</label>

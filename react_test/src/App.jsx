@@ -7,6 +7,8 @@ import Profile from './pages/profile'
 import Login from './pages/login'
 import Register from './pages/register'
 
+const loggedUser = ''
+
 function App() {
   return (
     <>

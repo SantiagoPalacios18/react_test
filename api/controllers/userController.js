@@ -1,4 +1,5 @@
 //userController
+const {Op} = require("sequelize");
 const { User } = require('../models/index.js');
 
 const getUsers = async (req, res) => {
@@ -21,6 +22,22 @@ const getUserById = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+const getUserRepeated = async (req, res) => {
+    try{
+        const{username, email} = req.query;
+        const user = await User.findOne({
+            where: {
+                [Op.or]: [{username: username}, {email: email}]
+            }
+        });
+        if(!user) return res.status(404).json({message: "El usuario no existe"});
+
+        res.status(200).json(user);
+    } catch(error){
+        res.status(500).json({ error: error.message })
+    }
+}
 
 const createUser = async (req, res) => {
     try {
@@ -65,6 +82,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
     getUsers,
     getUserById,
+    getUserRepeated,
     createUser,
     updateUser,
     deleteUser
