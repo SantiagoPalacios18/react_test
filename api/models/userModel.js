@@ -10,7 +10,9 @@ const User = sequelize.define('User', {
     },
     username:{
         type: DataTypes.STRING(20),
-        unique: true,
+        unique: {
+            msg: "El Username ya fue registrado"
+        },
         allowNull: false
     },
     name:{
@@ -19,11 +21,13 @@ const User = sequelize.define('User', {
     },
     email: {
         type: DataTypes.STRING,
+        unique: {
+            msg: "El Email ya fue registrado"
+        },
         allowNull: false
     },
     cont:{
         type: DataTypes.INTEGER,
-        unique: true,
         allowNull: false
     }
 }, {

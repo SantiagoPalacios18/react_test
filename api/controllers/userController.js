@@ -1,5 +1,5 @@
 //userController
-const {Op} = require("sequelize");
+const {Op} = require('sequelize');
 const { User } = require('../models/index.js');
 
 const getUsers = async (req, res) => {
@@ -32,8 +32,8 @@ const getUserRepeated = async (req, res) => {
             }
         });
         if(!user) return res.status(404).json({message: "El usuario no existe"});
-
-        res.status(200).json(user);
+        const rep = user.username == username ? ("Este usuario ya esta en uso") : ("Este email ya fue registrado")
+        res.status(200).json({message: rep});
     } catch(error){
         res.status(500).json({ error: error.message })
     }
@@ -47,7 +47,8 @@ const createUser = async (req, res) => {
         const newUser = await User.create({ username, name, email, cont });
         res.status(201).json(newUser);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        User.
+        res.status(500).json({ error: error.errors[0].message });
     }
 };
 

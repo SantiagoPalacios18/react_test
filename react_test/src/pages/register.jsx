@@ -17,25 +17,17 @@ function Register() {
       setError("Campos incompletos")
       return
     }
-    try {
-      const {check} = await axios.get(`http://localhost:3000/users/check?username=${user}&email=${email}`)
-
-      if(check){
-        setTest(check.data)
-        setError("Usuario o Email ya en uso")
-        return
-      }
-    }catch(error){
-      if(error.response){
-        setError(err.response.data.message)
-      } else {
-        setError("El servidor no responde, intente nuevamente")
-      }
-    }
     if (cont != vercont){
-      setError("Las contraseñas no coincides")
+      setError("Las contraseñas no coinciden")
       return
     }
+
+    try{
+      const error = axios.get('http://localhost:3000/users/check')
+    }catch(error){
+
+    }
+
     try{
       const response = await axios.post('http://localhost:3000/users', {
         username: user,
@@ -45,8 +37,9 @@ function Register() {
       })
       console.log({response})
     }catch(error){
-      if(error.response){
-        setError(error.response.data.message)
+      if(error){
+        console.log(error.response.data.error)
+        setError(error.response.data.error)
       } else {
         setError("El servidor no responde, intente nuevamente")
       }

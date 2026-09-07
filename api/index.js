@@ -7,8 +7,6 @@ const postRoutes = require('./routes/postRoutes.js'); // Se importan todas las r
 const likeRoutes = require('./routes/likeRoutes.js'); // Se importan todas las rutas de like
 const tokenRoutes = require('./routes/tokenRoutes.js'); // Se importan todas las rutas de token
 
-SECRET_KEY = "WDGASTERINDELTARUNEBUILDITALLFROMANEMPTYROOM";
-
 const server = express();
 server.use(cors())
 server.use(express.json()); // Lenguaje utilizado para enviar y recibir la información
@@ -27,7 +25,7 @@ server.use('/tokens', tokenRoutes);
 server.listen(3000, async () => {
   try {
     await sequelize.authenticate(); // Prueba para verificar que haya conexión exitosa y ver si el motor de la BD está encendido
-    await sequelize.sync(); // Verifica las estructuras de la BD, comparando lo ingresado en el JS con lo que está en la BD
+    await sequelize.sync({force: true}); // Verifica las estructuras de la BD, comparando lo ingresado en el JS con lo que está en la BD
     /* INTERACCIÓN CON LAS TABLAS:
         sync() : Crea tablas (SNE), no modifica ni borra
         sync(force: true): Recrea absolutamente toda la BD, creando, modificando o borrando tablas
