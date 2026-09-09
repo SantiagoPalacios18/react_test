@@ -2,6 +2,7 @@ const express = require("express"); // Framework para hacer servidores web y adm
 const { sequelize } = require('./config/db.js'); // Importamos el sequelize, el cual ya fue importado dentro de config/db.js
 const cors = require("cors")
 require('./models/index.js'); // Se importan todas las estructuras de las tablas
+const authRoutes = require('./routes/authRoutes.js')
 const userRoutes = require('./routes/userRoutes.js'); // Se importan todas las rutas de user
 const postRoutes = require('./routes/postRoutes.js'); // Se importan todas las rutas de post
 const likeRoutes = require('./routes/likeRoutes.js'); // Se importan todas las rutas de like
@@ -14,7 +15,7 @@ server.get('/', (req, res) => {
     res.status(200).json({ message: "🔥🔥🔥 HOLAAAAA 🔥🔥🔥" });
 });
 
-
+server.use('/', authRoutes)
 server.use('/users', userRoutes);
 server.use('/posts', postRoutes);
 server.use('/likes', likeRoutes);

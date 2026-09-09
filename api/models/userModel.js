@@ -4,7 +4,6 @@ const { DataTypes } = require('sequelize');
 const User = sequelize.define('User', {
     id:{
         type: DataTypes.BIGINT,
-        allowNull: false,
         autoIncrement: true,
         primaryKey: true
     },
@@ -24,7 +23,10 @@ const User = sequelize.define('User', {
         unique: {
             msg: "El Email ya fue registrado"
         },
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isEmail: true
+        }
     },
     cont:{
         type: DataTypes.INTEGER,

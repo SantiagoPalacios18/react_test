@@ -9,7 +9,6 @@ function Register() {
   const [cont, setCont] = useState('')
   const [vercont, setVercont] = useState('')
   const [error, setError] = useState('')
-  const [test, setTest] = useState('test')
   
   const handleSubmit = async(e) => {
     e.preventDefault()
@@ -20,12 +19,6 @@ function Register() {
     if (cont != vercont){
       setError("Las contraseñas no coinciden")
       return
-    }
-
-    try{
-      const error = axios.get('http://localhost:3000/users/check')
-    }catch(error){
-
     }
 
     try{

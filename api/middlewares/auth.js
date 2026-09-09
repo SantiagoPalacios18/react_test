@@ -3,11 +3,7 @@ const jwt = require("jsonwebtoken")
 SECRET_KEY = "WDGASTERINDELTARUNEBUILDITALLFROMANEMPTYROOM";
 
 const authMiddleware = (req, res, next) => {
-    const authHeader = req.headers["authorization"]
-
-    if (!authHeader) {
-        return res.status(401).json({ message: "Token no proporcionado" })
-    }
+    const token = req.headers["authorization"]
 
     if (!token) {
         return res.status(401).json({ message: "Token no proporcionado" })

@@ -23,22 +23,6 @@ const getUserById = async (req, res) => {
     }
 };
 
-const getUserRepeated = async (req, res) => {
-    try{
-        const{username, email} = req.query;
-        const user = await User.findOne({
-            where: {
-                [Op.or]: [{username: username}, {email: email}]
-            }
-        });
-        if(!user) return res.status(404).json({message: "El usuario no existe"});
-        const rep = user.username == username ? ("Este usuario ya esta en uso") : ("Este email ya fue registrado")
-        res.status(200).json({message: rep});
-    } catch(error){
-        res.status(500).json({ error: error.message })
-    }
-}
-
 const createUser = async (req, res) => {
     try {
         const { username, name, email, cont } = req.body;
@@ -47,7 +31,6 @@ const createUser = async (req, res) => {
         const newUser = await User.create({ username, name, email, cont });
         res.status(201).json(newUser);
     } catch (error) {
-        User.
         res.status(500).json({ error: error.errors[0].message });
     }
 };
@@ -83,7 +66,6 @@ const deleteUser = async (req, res) => {
 module.exports = {
     getUsers,
     getUserById,
-    getUserRepeated,
     createUser,
     updateUser,
     deleteUser

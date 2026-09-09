@@ -7,7 +7,22 @@ import Profile from './pages/profile'
 import Login from './pages/login'
 import Register from './pages/register'
 
-const loggedUser = ''
+const [user, setUser] = useState();
+
+useEffect(async () => {
+  const storedToken = localStorage.getItem("TOKEN")
+  if(!storedToken) return
+
+  try{
+    loggedUser = await axios.get('http//localhost:3000/me', {
+      headers: {Authorization: storedToken}      
+    })
+
+    
+  }catch{
+
+  }
+},[])
 
 function App() {
   return (
